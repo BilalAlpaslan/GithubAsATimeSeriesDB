@@ -1,7 +1,7 @@
 name: Collect
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 defaults:
@@ -31,3 +31,4 @@ jobs:
         fetch: false
         message: update-${{ env.GITHUB_RUN_NUMBER }}
         add: "*.txt --force"
+        amend: true
