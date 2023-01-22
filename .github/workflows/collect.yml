@@ -1,0 +1,30 @@
+name: Collect
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+
+defaults:
+  run:
+    working-directory: ./app
+    
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Python Setup 
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10' 
+    - run: python main.py > ../text.txt
+      
+    - name: Commit
+      uses: EndBug/add-and-commit@v9
+      with:
+        committer_name: GitHub Actions
+        committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+        fetch: false
+        message: update-${{ env.GITHUB_RUN_NUMBER }}
+        add: "*.txt --force"
