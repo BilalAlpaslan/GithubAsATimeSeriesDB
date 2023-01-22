@@ -21,7 +21,7 @@ jobs:
         python-version: '3.10'
         
     - name: Run python code
-      run: python main.py > ../text.txt
+      run: python main.py >> ../text.txt
       
     - name: Commit
       uses: EndBug/add-and-commit@v9
